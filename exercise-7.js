@@ -1,13 +1,13 @@
 function urutkanAbjad(str) {
   // you can only write your code here!
-  let strArray = [];
+  var strArray = [];
 
-  for (let i = str.length - 1; i >= 0; i--) {
+  for (var i = str.length - 1; i >= 0; i--) {
       strArray.push(str[i]);
   }
   return strArray.sort().join("");
 }
-  
+
 // TEST CASES
 console.log(urutkanAbjad('hello')); // 'ehllo'
 console.log(urutkanAbjad('truncate')); // 'acenrttu'
