@@ -1,19 +1,24 @@
 function cariModus(arr) {
   // you can only write your code here!
   // SORT and REMOVE duplicates----------
-  const arrSort = arr.sort(function(a, b) { return b < a ;});
+  for (var n = 0; n < arr.length; n++) {
+    for (var o = 0 + n; o < arr.length; o++) {
+      if (arr[n] > arr[o]) {
+        arr[o] = arr[n] + arr[o];
+        arr[n] = arr[o] - arr[n];
+        arr[o] = arr[o] - arr[n];
+      }
+    }
+  }
 
   var lookUp = [];
-  lookUp.push(arrSort[0]);
+  lookUp.push(arr[0]);
 
-  for(var i = 1; i < arrSort.length; i++) {
+  for(var i = 1; i < arr.length; i++) {
     var temp = undefined;
     for (var j = 0; j < lookUp.length; j++) {
-      if(arrSort[i] !== lookUp[j]) {
-        temp = arrSort[i];
-      }
-      else {
-        temp = undefined;
+      if(arr[i] !== lookUp[j]) {
+        temp = arr[i];
       }
     }
 
