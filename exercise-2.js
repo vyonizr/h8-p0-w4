@@ -1,19 +1,26 @@
-function fpb(angka1, angka2) {
-  // you can only write your code here!
-  function pushDivisor(num) {
-    var divisors = [];
+function pushDivisor(num) {
+  var divisors = [];
 
-    for (var i = 1; i <= num; i++) {
-      if (Number.isInteger(num / i)) {
-        divisors.push(i);
-      }
+  for (var i = 1; i <= num; i++) {
+    if (Number.isInteger(num / i)) {
+      divisors.push(i);
     }
-
-    return divisors;
   }
 
+  return divisors;
+}
+
+function fpb(angka1, angka2) {
+  // you can only write your code here!
+
   var factors = [pushDivisor(angka1), pushDivisor(angka2)];
-  factors.sort(function (a, b) { return b.length - a.length;});
+
+  if (factors[0].length < factors[1].length) {
+    var temp = factors[0];
+    factors.shift();
+    factors.push(temp);
+  }
+
   var greatestCommonDivisor = factors[1][k];
 
   for (var j = 0; j < factors[0].length; j++) {
