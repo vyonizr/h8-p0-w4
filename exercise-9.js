@@ -13,7 +13,11 @@ function checkAB(num) {
   }
 
   var abIndex = [aIndex, bIndex];
-  abIndex.sort(function (a, b) {return b.length > a.length;});
+  if (abIndex[0].length > abIndex[1].length) {
+    var temp = abIndex[0];
+    abIndex.shift();
+    abIndex.push(temp);
+  }
 
   for (var j = 0; j < abIndex[0].length; j++) {
     for (var k = 0; k < abIndex[1].length; k++) {
