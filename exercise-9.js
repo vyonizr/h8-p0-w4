@@ -13,7 +13,7 @@ function checkAB(num) {
   }
 
   var abIndex = [aIndex, bIndex];
-  if (abIndex[0].length > abIndex[1].length) {
+  if (abIndex[0].length < abIndex[1].length) {
     var temp = abIndex[0];
     abIndex.shift();
     abIndex.push(temp);
