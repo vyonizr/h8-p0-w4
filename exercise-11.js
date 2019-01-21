@@ -1,46 +1,52 @@
 function shoppingTime(memberId, money) {
   // you can only write your code here!
-  var catalogues = {
-    "Sepatu Stacattu": 1500000,
-    "Baju Zoro": 500000,
-    "H&N": 250000,
-    "Sweater Uniklooh": 175000,
-    "Casing Handphone": 50000
-  };
-
-  var cheapestItem = catalogues["Sepatu Stacattu"];
-  for (var price in catalogues) {
-    if (cheapestItem > catalogues[price]) {
-      cheapestItem = catalogues[price];
-    }
-  }
-
-  var purchasedItems = [];
-  var moneyInPocket = money;
-  for (var item in catalogues) {
-    if (moneyInPocket - catalogues[item] >= 0) {
-      moneyInPocket -= catalogues[item];
-      purchasedItems.push(item);
-    }
-  }
-
-  var salesLog = {
-    memberId: memberId,
-    money: money,
-    listPurchased: purchasedItems,
-    changeMoney: moneyInPocket
-  };
-
-  if (memberId === "" || (memberId === undefined && money === undefined)) {
+  /*
+  Sepatu brand Stacattu seharga 1500000
+  Baju brand Zoro seharga 500000
+  Baju brand H&N seharga 250000
+  Sweater brand Uniklooh seharga 175000
+  Casing Handphone seharga 50000
+  */
+  if (memberId === "" || memberId === undefined) {
     return "Mohon maaf, toko X hanya berlaku untuk member saja";
   }
-  else if (money < cheapestItem) {
-    return "Mohon maaf, uang tidak cukup";
-  }
-  else {
-    return salesLog;
+
+  var catalogues = [
+    ["Sepatu Stacattu", 1500000],
+    ["Baju Zoro", 500000],
+    ["Baju H&N", 250000],
+    ["Sweater Uniklooh", 175000],
+    ["Casing Handphone", 50000]
+  ]
+
+  var cheapestItem = catalogues[0][1];
+
+  for (var i = 0; i < catalogues.length; i++) {
+    if (cheapestItem > catalogues[i][1]) {
+      cheapestItem = catalogues[i][1]
+    }
   }
 
+  if (money < cheapestItem) {
+    return "Mohon maaf, uang tidak cukup";
+  }
+
+  var remainingMoney = money;
+  var saleDetails = {
+    memberId: memberId,
+    money: money,
+    listPurchased: [],
+    changeMoney: remainingMoney
+  }
+
+  for (var j = 0; j < catalogues.length; j++) {
+    if (remainingMoney >= catalogues[j][1]) {
+      saleDetails.listPurchased.push(catalogues[j][0]);
+      saleDetails.changeMoney -= catalogues[j][1];
+    }
+  }
+
+  return saleDetails;
 }
 
 // TEST CASES
